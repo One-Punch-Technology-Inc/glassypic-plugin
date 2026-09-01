@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "tinify-ai": {
+    "glassypic": {
       "command": "npx",
-      "args": ["-y", "@tinify-ai/mcp-server"]
+      "args": ["-y", "@glassypic/mcp-server"]
     }
   }
 }

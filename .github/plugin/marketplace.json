@@ -1,18 +1,18 @@
 {
-  "name": "tinify-ai-marketplace",
+  "name": "glassypic-marketplace",
   "owner": {
-    "name": "tinify.ai",
-    "email": "hello@tinify.ai"
+    "name": "GlassyPic",
+    "email": "hello@glassypic.com"
   },
   "metadata": {
     "description": "AI-powered image optimization for developers",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "plugins": [
     {
-      "name": "tinify-ai",
+      "name": "glassypic",
       "description": "AI-powered image optimization — compress, resize, upscale, convert formats, and generate SEO metadata.",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "source": "."
     }
   ]

@@ -1,4 +1,6 @@
-# tinify.ai Plugin
+# GlassyPic Plugin
+
+> **GitHub account: `onepunchtechnology`.** company (One Punch Technology) repo. Run `gh auth switch --user onepunchtechnology` once at the start of any session and **stay on it** for all `gh` / `git push` work — do not switch back to a personal account mid-session.
 
 AI-powered image optimization for your coding workflow. Compress, resize, upscale, convert formats, and generate SEO metadata — all from your AI assistant.
 
@@ -9,26 +11,18 @@ Works with **Claude Code**, **Cursor**, and **GitHub Copilot CLI**.
 ### Claude Code
 
 ```bash
-claude /plugin install https://github.com/onepunchtechnology/tinify-ai-plugin
+claude /plugin install https://github.com/onepunchtechnology/glassypic-plugin
 ```
 
 ### GitHub Copilot CLI
 
 ```bash
-copilot plugin install tinify-ai@awesome-copilot
-```
-
-> If you haven't registered the marketplace yet: `copilot plugin marketplace add github/awesome-copilot`
-
-Or install directly from GitHub:
-
-```bash
-copilot plugin install onepunchtechnology/tinify-ai-plugin
+copilot plugin install onepunchtechnology/glassypic-plugin
 ```
 
 ### Cursor
 
-Install from the [Cursor Marketplace](https://cursor.com/marketplace) — search for "tinify.ai".
+Install from the [Cursor Marketplace](https://cursor.com/marketplace) — search for "GlassyPic".
 
 Or add manually: clone this repo and load as a project plugin.
 
@@ -71,7 +65,7 @@ Audit and fix image-related Core Web Vitals issues: LCP hero images, CLS dimensi
 
 ## MCP Tools
 
-The plugin connects to the tinify-ai MCP server and exposes the following tools:
+The plugin connects to the GlassyPic MCP server and exposes the following tools:
 
 | Tool | Description |
 |------|-------------|
@@ -108,15 +102,15 @@ The plugin connects to the tinify-ai MCP server and exposes the following tools:
 | Starter | 1,000/month | $10/month |
 | Pro | 3,000/month | $29/month |
 | Max | 10,000/month | $89/month |
-| Enterprise | Custom | [Contact us](mailto:hello@tinify.ai) |
+| Enterprise | Custom | [Contact us](mailto:hello@glassypic.com) |
 
 Use the `status` tool to check your remaining credits. Use `login` to authenticate for more credits.
 
 ## Links
 
-- [tinify.ai](https://tinify.ai) — Web app
-- [npm package](https://www.npmjs.com/package/@tinify-ai/mcp-server) — Standalone MCP server
-- [GitHub](https://github.com/onepunchtechnology/tinify-ai-plugin) — This repo
+- [GlassyPic](https://glassypic.com) — Web app
+- [npm package](https://www.npmjs.com/package/@glassypic/mcp-server) — Standalone MCP server
+- [GitHub](https://github.com/onepunchtechnology/glassypic-plugin) — This repo
 
 ## License
 

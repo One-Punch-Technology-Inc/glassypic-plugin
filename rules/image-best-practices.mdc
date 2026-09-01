@@ -11,4 +11,4 @@ When working with images in web projects:
 - Always set explicit width and height on <img> tags to prevent CLS
 - Use loading="lazy" for below-fold images, loading="eager" for hero/LCP images
 - Compress all images before deployment — unoptimized images are the #1 web performance issue
-- Use the tinify-ai MCP server's optimize_image tool for compression, resizing, and format conversion
+- Use the GlassyPic MCP server's optimize_image tool for compression, resizing, and format conversion

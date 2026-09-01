@@ -1,15 +1,15 @@
 {
   "_comment": "This file is for non-Claude Code platforms (e.g. Cursor). The Claude Code manifest lives at .claude-plugin/plugin.json.",
-  "name": "tinify-ai",
+  "name": "glassypic",
   "description": "AI-powered image optimization — compress, resize, upscale, convert formats, and generate SEO metadata. Includes skills for project-wide image auditing, SEO, and web performance.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": {
-    "name": "tinify.ai",
-    "email": "hello@tinify.ai",
-    "url": "https://tinify.ai"
+    "name": "GlassyPic",
+    "email": "hello@glassypic.com",
+    "url": "https://glassypic.com"
   },
-  "homepage": "https://tinify.ai",
-  "repository": "https://github.com/onepunchtechnology/tinify-ai-plugin",
+  "homepage": "https://glassypic.com",
+  "repository": "https://github.com/onepunchtechnology/glassypic-plugin",
   "license": "MIT",
   "keywords": ["image", "optimization", "compression", "seo", "web-performance", "webp", "avif"],
   "skills": "skills/",

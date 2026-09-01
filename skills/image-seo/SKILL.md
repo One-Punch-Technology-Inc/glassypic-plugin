@@ -5,7 +5,7 @@ description: "Use when the user wants to add alt text, audit image SEO, improve 
 
 # Image SEO
 
-Audit and fix image SEO issues in a project. Scans source code for `<img>` tags missing alt text, generates AI-powered alt text and keywords using the tinify-ai MCP server, and applies fixes to the codebase.
+Audit and fix image SEO issues in a project. Scans source code for `<img>` tags missing alt text, generates AI-powered alt text and keywords using the GlassyPic MCP server, and applies fixes to the codebase.
 
 ## Pre-flight
 

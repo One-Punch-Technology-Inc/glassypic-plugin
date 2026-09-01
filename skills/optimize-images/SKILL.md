@@ -5,7 +5,7 @@ description: "Use when the user wants to optimize, compress, or prepare images f
 
 # Optimize Images
 
-Batch-optimize images in a project using the tinify-ai MCP server. This skill teaches you how to audit, optimize, and report on image assets.
+Batch-optimize images in a project using the GlassyPic MCP server. This skill teaches you how to audit, optimize, and report on image assets.
 
 ## Pre-flight
 

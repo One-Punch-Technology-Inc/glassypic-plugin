@@ -1,14 +1,14 @@
 {
-  "name": "tinify-ai",
-  "displayName": "tinify.ai",
+  "name": "glassypic",
+  "displayName": "GlassyPic",
   "description": "AI-powered image optimization — compress, resize, upscale, convert formats, and generate SEO metadata",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": {
-    "name": "tinify.ai",
-    "url": "https://tinify.ai"
+    "name": "GlassyPic",
+    "url": "https://glassypic.com"
   },
-  "homepage": "https://tinify.ai",
-  "repository": "https://github.com/onepunchtechnology/tinify-ai-plugin",
+  "homepage": "https://glassypic.com",
+  "repository": "https://github.com/onepunchtechnology/glassypic-plugin",
   "license": "MIT",
   "keywords": ["image", "optimization", "compression", "seo", "web-performance"],
   "skills": "./skills/",

@@ -5,7 +5,7 @@ description: "Use when the user wants to improve image loading performance, fix 
 
 # Web Performance Images
 
-Audit and fix image-related performance issues that affect Core Web Vitals (LCP, CLS, INP). Combines code analysis with the tinify-ai MCP server for image optimization.
+Audit and fix image-related performance issues that affect Core Web Vitals (LCP, CLS, INP). Combines code analysis with the GlassyPic MCP server for image optimization.
 
 ## Pre-flight
 
