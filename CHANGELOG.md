@@ -5,7 +5,9 @@
 ### Changed
 
 - **Renamed from `tinify-ai` to `glassypic`** across all platform manifests. This is a breaking change.
-- MCP server package is now `@glassypic/mcp-server` (was `@tinify-ai/mcp-server`, deprecated on npm)
+- MCP server package is now `@glassypic/mcp-server`. The previous package was deprecated on npm
+  in June 2026 and unpublished on 2026-09-01; it no longer resolves, so the old install command
+  will fail rather than install an outdated version.
 - MCP server key in `.mcp.json` is now `glassypic`, so tool identifiers change from
   `mcp__tinify-ai__*` to `mcp__glassypic__*`
 - Homepage and contact moved to `glassypic.com`
