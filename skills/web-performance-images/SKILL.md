@@ -90,7 +90,7 @@ This section is advisory — only suggest if the user asks or if images are clea
 
 ## Error Handling
 
-- If `optimize_image` fails with insufficient credits: stop, report progress, suggest `upgrade`
+- If `optimize_image` fails with insufficient credits: stop, report progress, and note when credits reset (`status`); for guests, `login` grants more daily credits
 - If ImageMagick/`identify` is not available for dimension detection: fall back to calling `optimize_image` to get dimensions from the output
 
 ## Report

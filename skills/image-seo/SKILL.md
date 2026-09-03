@@ -60,7 +60,7 @@ The tool returns:
 
 ## Error Handling
 
-- If `optimize_image` fails with insufficient credits: stop, report progress, suggest `upgrade`
+- If `optimize_image` fails with insufficient credits: stop, report progress, and note when credits reset (`status`); for guests, `login` grants more daily credits
 - If an image file cannot be found at the path referenced in code: skip and note in report
 
 ## Report

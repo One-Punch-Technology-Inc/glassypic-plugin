@@ -1,35 +1,65 @@
 # GlassyPic Plugin
 
-> **GitHub account: `onepunchtechnology`.** company (One Punch Technology) repo. Run `gh auth switch --user onepunchtechnology` once at the start of any session and **stay on it** for all `gh` / `git push` work — do not switch back to a personal account mid-session.
-
 AI-powered image optimization for your coding workflow. Compress, resize, upscale, convert formats, and generate SEO metadata — all from your AI assistant.
 
 Works with **Claude Code**, **Cursor**, and **GitHub Copilot CLI**.
 
 ## Installation
 
+GlassyPic isn't published to any editor's plugin marketplace — you install it straight from this repository.
+
 ### Claude Code
 
+Register this repo as a marketplace, then install the plugin from it:
+
 ```bash
-claude /plugin install https://github.com/onepunchtechnology/glassypic-plugin
+/plugin marketplace add onepunchtechnology/glassypic-plugin
+/plugin install glassypic@glassypic-marketplace
+```
+
+For local development, load a clone directly instead:
+
+```bash
+git clone https://github.com/onepunchtechnology/glassypic-plugin
+claude --plugin-dir ./glassypic-plugin
 ```
 
 ### GitHub Copilot CLI
 
 ```bash
-copilot plugin install onepunchtechnology/glassypic-plugin
+copilot plugin marketplace add onepunchtechnology/glassypic-plugin
+copilot plugin install glassypic@glassypic-marketplace
 ```
 
 ### Cursor
 
-Install from the [Cursor Marketplace](https://cursor.com/marketplace) — search for "GlassyPic".
+Cursor loads local plugins from `~/.cursor/plugins/local/`. Clone the repo into a folder there — use a real directory, not a symlink, which currently fails to load — then reload the window:
 
-Or add manually: clone this repo and load as a project plugin.
+```bash
+git clone https://github.com/onepunchtechnology/glassypic-plugin ~/.cursor/plugins/local/glassypic
+```
+
+Run **Developer: Reload Window** from the command palette (Cmd/Ctrl+Shift+P) to activate it.
+
+### Any other MCP client
+
+The plugin is a thin wrapper around the `@glassypic/mcp-server` package. To use the tools directly, add this to your client's MCP config:
+
+```json
+{
+  "mcpServers": {
+    "glassypic": {
+      "command": "npx",
+      "args": ["-y", "@glassypic/mcp-server"]
+    }
+  }
+}
+```
 
 ## Requirements
 
 - **Node.js 18+**
-- No signup required — 20 free credits/day as guest
+- No account required. GlassyPic grants free credits daily to guests and signed-in users alike — run the `status` tool to see what you have.
 
 ## Skills
 
@@ -70,10 +100,10 @@ The plugin connects to the GlassyPic MCP server and exposes the following tools:
 | Tool | Description |
 |------|-------------|
 | `optimize_image` | Compress, resize, upscale, convert format, and generate SEO tags |
-| `status` | Check account tier, credits remaining, and reset time |
-| `login` | Authenticate via browser for more credits |
-| `logout` | Sign out and clear local session |
-| `upgrade` | Open pricing page for higher credit limits |
+| `status` | Check credits remaining and reset time |
+| `login` | Sign in via your browser |
+| `logout` | Sign out and clear the local session |
+| `upgrade` | Raise your daily credit limit |
 
 ### `optimize_image` Parameters
 
@@ -92,19 +122,6 @@ The plugin connects to the GlassyPic MCP server and exposes the following tools:
 | `gif_frame_limit` | int (1–100) | Max frames to process for animated GIFs (default: `100`) |
 
 **Supported input formats:** JPG, PNG, WebP, AVIF, GIF (animated), HEIC, TIFF, BMP, SVG, ICO — up to 50 MB.
-
-## Pricing
-
-| Tier | Credits | Cost |
-|------|---------|------|
-| Guest | 20/day | Free, no signup |
-| Free | 50/day | Free with account |
-| Starter | 1,000/month | $10/month |
-| Pro | 3,000/month | $29/month |
-| Max | 10,000/month | $89/month |
-| Enterprise | Custom | [Contact us](mailto:hello@glassypic.com) |
-
-Use the `status` tool to check your remaining credits. Use `login` to authenticate for more credits.
 
 ## Links
 

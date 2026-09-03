@@ -1,0 +1,42 @@
+name: Validate plugin
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check manifests are well-formed JSON
+        run: |
+          set -e
+          for f in \
+            plugin.json \
+            .claude-plugin/plugin.json \
+            .claude-plugin/marketplace.json \
+            .cursor-plugin/plugin.json \
+            .mcp.json
+          do
+            echo "· $f"
+            jq empty "$f"
+          done
+
+      - name: Manifest names and versions match
+        run: |
+          set -e
+          root_name=$(jq -r .name plugin.json)
+          root_ver=$(jq -r .version plugin.json)
+          for f in .claude-plugin/plugin.json .cursor-plugin/plugin.json; do
+            [ "$(jq -r .name "$f")" = "$root_name" ] || { echo "name mismatch in $f"; exit 1; }
+            [ "$(jq -r .version "$f")" = "$root_ver" ] || { echo "version mismatch in $f"; exit 1; }
+          done
+          mp_ver=$(jq -r '.plugins[0].version' .claude-plugin/marketplace.json)
+          [ "$mp_ver" = "$root_ver" ] || { echo "marketplace plugin version ($mp_ver) != $root_ver"; exit 1; }
+          echo "All manifests agree on $root_name@$root_ver"
+
+      - name: Validate with Claude Code
+        run: npx --yes @anthropic-ai/claude-code plugin validate .

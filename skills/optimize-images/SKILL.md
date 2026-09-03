@@ -10,9 +10,9 @@ Batch-optimize images in a project using the GlassyPic MCP server. This skill te
 ## Pre-flight
 
 1. Call the `status` tool to check available credits
-2. If credits are low (fewer than the number of images to process), warn the user:
-   - If unregistered/guest: suggest `login` to get more credits
-   - If registered: suggest `upgrade` for a higher tier
+2. If credits are low (fewer than the number of images to process), warn the user. If they're
+   running as a guest, mention that signing in with `login` grants more daily credits. Credits
+   reset daily — `status` shows when.
 3. Confirm with the user before proceeding with large batches (>20 images)
 
 ## Audit
@@ -57,8 +57,8 @@ optimize_image({
 ## Error Handling
 
 - If `optimize_image` returns a 429 (insufficient credits): **stop immediately**
-- Report how many images were processed vs total
-- Suggest `upgrade` to get more credits
+- Report how many images were processed vs total, and when credits reset (`status`)
+- If the user is a guest, note that `login` grants more daily credits
 - Do NOT retry failed optimizations without user confirmation
 
 ## Report

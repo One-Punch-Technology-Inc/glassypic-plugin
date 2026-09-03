@@ -2,7 +2,8 @@
   "name": "glassypic-marketplace",
   "owner": {
     "name": "GlassyPic",
-    "email": "hello@glassypic.com"
+    "email": "hello@glassypic.com",
+    "url": "https://glassypic.com"
   },
   "metadata": {
     "description": "AI-powered image optimization for developers",

@@ -1,5 +1,33 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- README installation instructions rewritten to match how each host actually installs an
+  unlisted third-party plugin: `plugin marketplace add` from this repo for Claude Code and
+  GitHub Copilot CLI, a local clone under `~/.cursor/plugins/local/` for Cursor, plus a raw
+  MCP config for any other client.
+- Removed the incorrect "install from the Cursor Marketplace" instruction — the plugin is not
+  published to any marketplace.
+- Consolidated the plugin-marketplace manifest to `.claude-plugin/marketplace.json` (read by
+  both Claude Code and Copilot CLI); removed `.github/plugin/marketplace.json`.
+- Softened credit-limit language in the three skills: guests are pointed to `login` and
+  everyone to the daily reset, instead of "suggest `upgrade`".
+- Moved the GitHub-account / contributor guidance out of the README into `AGENTS.md`.
+
+### Added
+
+- `AGENTS.md` — agent/contributor notes (account switching, manifest sync, no-pricing rule);
+  `CLAUDE.md` imports it so there is one source of truth.
+- `.github/workflows/validate.yml` — CI that checks manifest JSON, cross-manifest name/version
+  agreement, and `claude plugin validate`.
+
+### Removed
+
+- Pricing table and paid-tier / pricing-page references from the README. Credits are now a
+  one-line note: free daily credits for guests and signed-in users.
+
 ## 2.0.0 (2026-09-01)
 
 ### Changed
