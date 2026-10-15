@@ -2,13 +2,13 @@
   "name": "glassypic",
   "displayName": "GlassyPic",
   "description": "AI-powered image optimization — compress, resize, upscale, convert formats, and generate SEO metadata",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": {
     "name": "GlassyPic",
     "url": "https://glassypic.com"
   },
   "homepage": "https://glassypic.com",
-  "repository": "https://github.com/onepunchtechnology/glassypic-plugin",
+  "repository": "https://github.com/One-Punch-Technology-Inc/glassypic-plugin",
   "license": "MIT",
   "keywords": ["image", "optimization", "compression", "seo", "web-performance"],
   "skills": "./skills/",

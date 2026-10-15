@@ -39,9 +39,12 @@ For each image needing alt text, call `optimize_image` with SEO enabled:
 ```
 optimize_image({
   input: "/absolute/path/to/the/image.jpg",
-  output_seo_tag_gen: true
+  output_seo_tag_gen: true,
+  output_path: "/tmp/glassypic-seo/"
 })
 ```
+
+`optimize_image` always writes an optimized copy of the image. Point `output_path` at a temp directory, as above, so the copies don't land in the user's project. Delete that directory when you're done, unless the user also wants the optimized files.
 
 The tool returns:
 - `seo_alt_text` — Descriptive alt text for the image

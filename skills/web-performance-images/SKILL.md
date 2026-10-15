@@ -34,7 +34,7 @@ Find all `<img>` tags missing explicit dimensions:
 
 1. Use Grep to find `<img` tags without `width` and `height` attributes
 2. For each image missing dimensions:
-   - Read the actual image file to determine its dimensions (use Bash: `identify -format "%wx%h" image.jpg` if ImageMagick is available, or call `optimize_image` which returns dimensions)
+   - Read the actual image file to determine its dimensions (use Bash: `identify -format "%wx%h" image.jpg` if ImageMagick is available, or `sips -g pixelWidth -g pixelHeight image.jpg` on macOS, or `file image.png`). Don't call `optimize_image` just to read dimensions: it costs credits and writes a new file
    - Add `width` and `height` attributes to the tag
 3. For Next.js: ensure `<Image>` components have `width`/`height` or use `fill` with a sized container
 
@@ -58,15 +58,18 @@ Find oversized images:
    ```
 2. For each oversized image, compress with `optimize_image`:
    ```
-   optimize_image({ input: "/path/to/large-image.jpg" })
+   optimize_image({ input: "/path/to/large-image.jpg", output_seo_tag_gen: false })
    ```
+   Set `output_seo_tag_gen: false`. SEO tagging is on by default, costs an extra credit, and renames the output to an SEO slug, which breaks the image's existing references.
 3. If an image's intrinsic dimensions are much larger than its display size, resize:
    ```
    optimize_image({
      input: "/path/to/image.jpg",
-     output_width_px: 1200
+     output_width_px: 1200,
+     output_seo_tag_gen: false
    })
    ```
+4. The tool writes a new file (`.polished` suffix) and leaves the original in place. Swap it in and update references only after the user confirms.
 
 ## Responsive Images (Best Effort)
 

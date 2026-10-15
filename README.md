@@ -13,21 +13,21 @@ GlassyPic isn't published to any editor's plugin marketplace — you install it 
 Register this repo as a marketplace, then install the plugin from it:
 
 ```bash
-/plugin marketplace add onepunchtechnology/glassypic-plugin
+/plugin marketplace add One-Punch-Technology-Inc/glassypic-plugin
 /plugin install glassypic@glassypic-marketplace
 ```
 
 For local development, load a clone directly instead:
 
 ```bash
-git clone https://github.com/onepunchtechnology/glassypic-plugin
+git clone https://github.com/One-Punch-Technology-Inc/glassypic-plugin
 claude --plugin-dir ./glassypic-plugin
 ```
 
 ### GitHub Copilot CLI
 
 ```bash
-copilot plugin marketplace add onepunchtechnology/glassypic-plugin
+copilot plugin marketplace add One-Punch-Technology-Inc/glassypic-plugin
 copilot plugin install glassypic@glassypic-marketplace
 ```
 
@@ -36,7 +36,7 @@ copilot plugin install glassypic@glassypic-marketplace
 Cursor loads local plugins from `~/.cursor/plugins/local/`. Clone the repo into a folder there — use a real directory, not a symlink, which currently fails to load — then reload the window:
 
 ```bash
-git clone https://github.com/onepunchtechnology/glassypic-plugin ~/.cursor/plugins/local/glassypic
+git clone https://github.com/One-Punch-Technology-Inc/glassypic-plugin ~/.cursor/plugins/local/glassypic
 ```
 
 Run **Developer: Reload Window** from the command palette (Cmd/Ctrl+Shift+P) to activate it.
@@ -50,11 +50,26 @@ The plugin is a thin wrapper around the `@glassypic/mcp-server` package. To use 
   "mcpServers": {
     "glassypic": {
       "command": "npx",
-      "args": ["-y", "@glassypic/mcp-server"]
+      "args": ["-y", "@glassypic/mcp-server@2.1.2"]
     }
   }
 }
 ```
+
+The plugin pins the server to an exact version. Check [npm](https://www.npmjs.com/package/@glassypic/mcp-server) for newer releases.
+
+## What the plugin sends and stores
+
+The plugin runs the `@glassypic/mcp-server` package on your machine through `npx`, which downloads it from npm the first time. The skills themselves only read and edit files in your project.
+
+When a tool runs, the server talks to `https://api.glassypic.com`:
+
+- `optimize_image` uploads the image you point it at (a local file or a URL) for processing, then downloads the result. It writes the result as a new file next to the original, or wherever `output_path` says. It never overwrites the original.
+- Every request carries a session token so the API can count your credits. `status` sends only that token.
+- `login` opens a sign-in page on `glassypic.com` in your browser. `upgrade` opens the plans page there and makes no API call.
+- `logout` asks the API to revoke your sign-in token.
+
+The server keeps its tokens in `~/.glassypic/session.json` (readable only by you): a guest token from your first request, plus your sign-in token once you log in. `logout` removes the sign-in token and leaves the guest one. The server reads no other files except the images you pass to `optimize_image`.
 
 ## Requirements
 
@@ -127,7 +142,7 @@ The plugin connects to the GlassyPic MCP server and exposes the following tools:
 
 - [GlassyPic](https://glassypic.com) — Web app
 - [npm package](https://www.npmjs.com/package/@glassypic/mcp-server) — Standalone MCP server
-- [GitHub](https://github.com/onepunchtechnology/glassypic-plugin) — This repo
+- [GitHub](https://github.com/One-Punch-Technology-Inc/glassypic-plugin) — This repo
 
 ## License
 

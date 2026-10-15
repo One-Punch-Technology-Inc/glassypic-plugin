@@ -50,7 +50,8 @@ optimize_image({
 })
 ```
 
-- Preserve directory structure — output alongside the original
+- Preserve directory structure — output alongside the original. With SEO off and no `output_path`, the tool saves a new file with a `.polished` suffix and never overwrites the original
+- After the batch, ask the user whether to replace the originals and update code references (required whenever the format changed, e.g. `.png` → `.webp`)
 - Track before/after sizes for the report
 - If a GIF has multiple frames, the tool will return a cost warning. Set `confirm_gif_cost: true` to proceed.
 
