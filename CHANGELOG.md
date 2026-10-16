@@ -34,7 +34,7 @@
 ### Added
 
 - README section "What the plugin sends and stores": what goes to `api.glassypic.com`, what
-  opens in the browser, and what's kept in `~/.glassypic/session.json`.
+  opens in the browser, and what's kept in `~/.glassypic/`.
 - `AGENTS.md` — agent/contributor notes (account switching, manifest sync, no-pricing rule);
   `CLAUDE.md` imports it so there is one source of truth.
 - `.github/workflows/validate.yml` — CI that checks manifest JSON, cross-manifest name/version

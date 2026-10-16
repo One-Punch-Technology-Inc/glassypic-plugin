@@ -86,8 +86,7 @@ Setting the `GLASSYPIC_API_URL` environment variable sends all of the above, ima
   - with `output_path` set, the file goes there
   - for a local file without it, the file goes next to the original
   - for a URL without it, the file goes in the server's working directory
-- **Session file:** `~/.glassypic/session.json`, readable only by you. It holds your guest token, plus your sign-in token, email address, and account tier once you log in. `logout` removes the sign-in token, email, and tier and keeps the guest token.
-- **Older session file:** if `~/.glassypic/session.json` doesn't exist yet, the server looks for the session file that versions before 2.0 kept in your home directory. If it finds one, it copies it into the new file and deletes the old one, so you stay signed in after upgrading.
+- **Session file:** a file in `~/.glassypic/`, readable only by you. It holds your guest token, plus your sign-in token, email address, and account tier once you log in. `logout` removes the sign-in token, email, and tier and keeps the guest token.
 
 ## Requirements
 
