@@ -7,13 +7,13 @@
   },
   "metadata": {
     "description": "AI-powered image optimization for developers",
-    "version": "2.1.0"
+    "version": "2.1.1"
   },
   "plugins": [
     {
       "name": "glassypic",
       "description": "AI-powered image optimization — compress, resize, upscale, convert formats, and generate SEO metadata.",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "source": "."
     }
   ]
