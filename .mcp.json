@@ -2,7 +2,7 @@
   "mcpServers": {
     "glassypic": {
       "command": "npx",
-      "args": ["-y", "@glassypic/mcp-server"]
+      "args": ["-y", "@glassypic/mcp-server@2.1.2"]
     }
   }
 }

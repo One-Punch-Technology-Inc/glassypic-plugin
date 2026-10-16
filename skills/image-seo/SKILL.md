@@ -34,14 +34,23 @@ Find all images in source code that need SEO attention:
 
 ## Generate Metadata
 
-For each image needing alt text, call `optimize_image` with SEO enabled:
+`optimize_image` always writes an optimized copy of the image. Keep those copies out of the user's project with a fresh temp directory for this run. Create it with Node, which the plugin already requires, so the path is native on macOS, Linux, and Windows:
+
+```bash
+node -e "const{mkdtempSync}=require('fs'),{join}=require('path'),{tmpdir}=require('os');console.log(mkdtempSync(join(tmpdir(),'glassypic-seo-')))"
+```
+
+Then call `optimize_image` with SEO enabled for each image, passing that printed directory plus a trailing path separator as `output_path`:
 
 ```
 optimize_image({
   input: "/absolute/path/to/the/image.jpg",
-  output_seo_tag_gen: true
+  output_seo_tag_gen: true,
+  output_path: "<printed temp dir>/"
 })
 ```
+
+When you're done, ask whether the user also wants the optimized files. If yes, copy the ones they want from the temp directory into the project before cleanup. Then delete only the directory this run created.
 
 The tool returns:
 - `seo_alt_text` — Descriptive alt text for the image

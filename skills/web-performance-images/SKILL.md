@@ -34,7 +34,7 @@ Find all `<img>` tags missing explicit dimensions:
 
 1. Use Grep to find `<img` tags without `width` and `height` attributes
 2. For each image missing dimensions:
-   - Read the actual image file to determine its dimensions (use Bash: `identify -format "%wx%h" image.jpg` if ImageMagick is available, or call `optimize_image` which returns dimensions)
+   - Read the actual image file to determine its dimensions (use Bash: `identify -format "%wx%h" image.jpg` if ImageMagick is available, or `sips -g pixelWidth -g pixelHeight image.jpg` on macOS, or `file image.png`). Don't call `optimize_image` just to read dimensions: it costs credits and writes a new file
    - Add `width` and `height` attributes to the tag
 3. For Next.js: ensure `<Image>` components have `width`/`height` or use `fill` with a sized container
 
@@ -58,15 +58,18 @@ Find oversized images:
    ```
 2. For each oversized image, compress with `optimize_image`:
    ```
-   optimize_image({ input: "/path/to/large-image.jpg" })
+   optimize_image({ input: "/path/to/large-image.jpg", output_seo_tag_gen: false })
    ```
+   Set `output_seo_tag_gen: false`. SEO tagging is on by default, costs an extra credit, and renames the output to an SEO slug, which breaks the image's existing references.
 3. If an image's intrinsic dimensions are much larger than its display size, resize:
    ```
    optimize_image({
      input: "/path/to/image.jpg",
-     output_width_px: 1200
+     output_width_px: 1200,
+     output_seo_tag_gen: false
    })
    ```
+4. The tool writes a new file and leaves the original in place. With SEO off the new file is named like `hero.polished.webp`, but always use the `output_path` the tool returns rather than guessing the name. Swap it in and update references only after the user confirms.
 
 ## Responsive Images (Best Effort)
 
@@ -91,7 +94,7 @@ This section is advisory — only suggest if the user asks or if images are clea
 ## Error Handling
 
 - If `optimize_image` fails with insufficient credits: stop, report progress, and note when credits reset (`status`); for guests, `login` grants more daily credits
-- If ImageMagick/`identify` is not available for dimension detection: fall back to calling `optimize_image` to get dimensions from the output
+- If no local tool can read an image's dimensions (`identify`, `sips`, or `file`, which doesn't report AVIF dimensions): don't fall back to `optimize_image`. List the image under "Requires manual action" in the report, and ask the user for its dimensions or to install ImageMagick
 
 ## Report
 

@@ -4,10 +4,12 @@ Guidance for AI coding agents (Claude Code, Cursor, Copilot CLI, etc.) working i
 
 ## GitHub account
 
-This is a **One Punch Technology** repo — the git remote is under `onepunchtechnology`.
+This is a **One Punch Technology** repo. It lives in the `One-Punch-Technology-Inc` GitHub
+organization: `https://github.com/One-Punch-Technology-Inc/glassypic-plugin` (moved from the
+`onepunchtechnology` user account; the old URL redirects).
 
 - Run `gh auth switch --user onepunchtechnology` once at the start of a session and **stay on it**
-  for all `gh` and `git push` work.
+  for all `gh` and `git push` work. That account has admin access to the organization repo.
 - Do **not** switch back to a personal account mid-session — later `gh` read commands (e.g.
   `gh pr checks`) fail with "Could not resolve to a Repository" because the other account can't
   see the private repo.

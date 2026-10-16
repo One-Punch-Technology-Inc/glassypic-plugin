@@ -13,21 +13,21 @@ GlassyPic isn't published to any editor's plugin marketplace — you install it 
 Register this repo as a marketplace, then install the plugin from it:
 
 ```bash
-/plugin marketplace add onepunchtechnology/glassypic-plugin
+/plugin marketplace add One-Punch-Technology-Inc/glassypic-plugin
 /plugin install glassypic@glassypic-marketplace
 ```
 
 For local development, load a clone directly instead:
 
 ```bash
-git clone https://github.com/onepunchtechnology/glassypic-plugin
+git clone https://github.com/One-Punch-Technology-Inc/glassypic-plugin
 claude --plugin-dir ./glassypic-plugin
 ```
 
 ### GitHub Copilot CLI
 
 ```bash
-copilot plugin marketplace add onepunchtechnology/glassypic-plugin
+copilot plugin marketplace add One-Punch-Technology-Inc/glassypic-plugin
 copilot plugin install glassypic@glassypic-marketplace
 ```
 
@@ -36,7 +36,7 @@ copilot plugin install glassypic@glassypic-marketplace
 Cursor loads local plugins from `~/.cursor/plugins/local/`. Clone the repo into a folder there — use a real directory, not a symlink, which currently fails to load — then reload the window:
 
 ```bash
-git clone https://github.com/onepunchtechnology/glassypic-plugin ~/.cursor/plugins/local/glassypic
+git clone https://github.com/One-Punch-Technology-Inc/glassypic-plugin ~/.cursor/plugins/local/glassypic
 ```
 
 Run **Developer: Reload Window** from the command palette (Cmd/Ctrl+Shift+P) to activate it.
@@ -50,11 +50,43 @@ The plugin is a thin wrapper around the `@glassypic/mcp-server` package. To use 
   "mcpServers": {
     "glassypic": {
       "command": "npx",
-      "args": ["-y", "@glassypic/mcp-server"]
+      "args": ["-y", "@glassypic/mcp-server@2.1.2"]
     }
   }
 }
 ```
+
+The plugin pins the server to an exact version. Check [npm](https://www.npmjs.com/package/@glassypic/mcp-server) for newer releases.
+
+## What the plugin sends and stores
+
+The plugin runs the `@glassypic/mcp-server` package on your machine through `npx`, which downloads it from npm the first time.
+
+The skills tell your assistant to scan your project for images (with Glob, Grep, and shell tools such as `find`, `ls`, `identify`, or `sips`), edit image tags in your code, and call the server's tools. `image-seo` also creates a temporary directory for the optimized copies it doesn't need and deletes it afterwards.
+
+### Network
+
+The server talks to `https://api.glassypic.com`:
+
+- **`optimize_image`, local file:** uploads the file's bytes, then downloads the processed result.
+- **`optimize_image`, URL:** sends the URL itself, including any query string such as a signed link, and GlassyPic's servers fetch the image. The image host sees GlassyPic's request, not yours.
+- **Credentials:** a guest's very first upload goes out with no token. The response creates a guest session, and later requests send that token in an `X-Session-Token` header. Once you sign in, requests send your sign-in token as `Authorization: Bearer` instead.
+- **`login`:** requests a one-time code, opens a sign-in page on `glassypic.com` in your browser, and checks every 3 seconds, for up to 5 minutes, whether you finished. These requests carry no token.
+- **`status`:** sends only your token.
+- **`logout`:** asks the API to revoke your sign-in token.
+- **`upgrade`:** opens the plans page on `glassypic.com` in your browser and makes no API call.
+
+Uploaded images and their processed versions are kept for a period that depends on your account tier, then deleted. The [privacy policy](https://glassypic.com/privacy/) has the schedule.
+
+Setting the `GLASSYPIC_API_URL` environment variable sends all of the above, images and tokens included, to that host instead (HTTPS required, except on localhost). The plugin doesn't set it.
+
+### Files on your machine
+
+- **Images:** reads the local images you pass to `optimize_image`. Writes each result as a new file and never overwrites the original:
+  - with `output_path` set, the file goes there
+  - for a local file without it, the file goes next to the original
+  - for a URL without it, the file goes in the server's working directory
+- **Session file:** a file in `~/.glassypic/`, readable only by you. It holds your guest token, plus your sign-in token, email address, and account tier once you log in. `logout` removes the sign-in token, email, and tier and keeps the guest token.
 
 ## Requirements
 
@@ -127,7 +159,7 @@ The plugin connects to the GlassyPic MCP server and exposes the following tools:
 
 - [GlassyPic](https://glassypic.com) — Web app
 - [npm package](https://www.npmjs.com/package/@glassypic/mcp-server) — Standalone MCP server
-- [GitHub](https://github.com/onepunchtechnology/glassypic-plugin) — This repo
+- [GitHub](https://github.com/One-Punch-Technology-Inc/glassypic-plugin) — This repo
 
 ## License
 
