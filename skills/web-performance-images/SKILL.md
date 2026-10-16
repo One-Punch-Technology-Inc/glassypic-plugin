@@ -69,7 +69,7 @@ Find oversized images:
      output_seo_tag_gen: false
    })
    ```
-4. The tool writes a new file (`.polished` suffix) and leaves the original in place. Swap it in and update references only after the user confirms.
+4. The tool writes a new file and leaves the original in place. With SEO off the new file is named like `hero.polished.webp`, but always use the `output_path` the tool returns rather than guessing the name. Swap it in and update references only after the user confirms.
 
 ## Responsive Images (Best Effort)
 
@@ -94,7 +94,7 @@ This section is advisory — only suggest if the user asks or if images are clea
 ## Error Handling
 
 - If `optimize_image` fails with insufficient credits: stop, report progress, and note when credits reset (`status`); for guests, `login` grants more daily credits
-- If ImageMagick/`identify` is not available for dimension detection: fall back to calling `optimize_image` to get dimensions from the output
+- If no local tool can read an image's dimensions (`identify`, `sips`, or `file`, which doesn't report AVIF dimensions): don't fall back to `optimize_image`. List the image under "Requires manual action" in the report, and ask the user for its dimensions or to install ImageMagick
 
 ## Report
 

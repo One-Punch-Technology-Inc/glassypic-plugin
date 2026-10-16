@@ -50,8 +50,9 @@ optimize_image({
 })
 ```
 
-- Preserve directory structure — output alongside the original. With SEO off and no `output_path`, the tool saves a new file with a `.polished` suffix and never overwrites the original
-- After the batch, ask the user whether to replace the originals and update code references (required whenever the format changed, e.g. `.png` → `.webp`)
+- Preserve directory structure — output alongside the original. With SEO off and no `output_path`, the tool saves a new file such as `hero.polished.webp` (adding `-2`, `-3`, … if that name is taken) and never overwrites the original
+- Record the `output_path` each call returns. Don't derive the new filename from the input name or format
+- After the batch, ask the user whether to replace the originals and update code references (required whenever the format changed, e.g. `.png` → `.webp`). Use the recorded `output_path` values for both
 - Track before/after sizes for the report
 - If a GIF has multiple frames, the tool will return a cost warning. Set `confirm_gif_cost: true` to proceed.
 
