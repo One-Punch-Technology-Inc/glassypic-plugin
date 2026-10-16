@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- `.claude-plugin/plugin.json` sets `documentationUrl`, `supportUrl`, `privacyPolicyUrl`, and
+  `termsOfServiceUrl` for the Claude plugin directory listing. Claude Code ignores them.
+
 ## 2.1.1 (2026-10-16)
 
 ### Changed

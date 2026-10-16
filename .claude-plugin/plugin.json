@@ -9,6 +9,10 @@
   "icon": "./.claude-plugin/icon.png",
   "homepage": "https://glassypic.com",
   "repository": "https://github.com/One-Punch-Technology-Inc/glassypic-plugin",
+  "documentationUrl": "https://github.com/One-Punch-Technology-Inc/glassypic-plugin#readme",
+  "supportUrl": "https://glassypic.com/contact/",
+  "privacyPolicyUrl": "https://glassypic.com/privacy/",
+  "termsOfServiceUrl": "https://glassypic.com/terms/",
   "license": "MIT",
   "keywords": ["image", "optimization", "compression", "seo", "web-performance", "webp", "avif"]
 }
