@@ -50,7 +50,7 @@ The plugin is a thin wrapper around the `@glassypic/mcp-server` package. To use 
   "mcpServers": {
     "glassypic": {
       "command": "npx",
-      "args": ["-y", "@glassypic/mcp-server@2.1.2"]
+      "args": ["-y", "@glassypic/mcp-server@2.1.3"]
     }
   }
 }

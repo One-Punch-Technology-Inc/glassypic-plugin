@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.1 (2026-10-16)
+
+### Changed
+
+- `.mcp.json` and the README's MCP config example pin `@glassypic/mcp-server@2.1.3`. The server
+  no longer states credit allowances in its tool text; `status` reports the live numbers.
+
 ## 2.1.0 (2026-10-15)
 
 ### Changed
